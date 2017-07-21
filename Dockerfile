@@ -1,5 +1,5 @@
-FROM alpine:3.6
+FROM scratch
 
-COPY fill_disk.sh /fill_disk.sh
+COPY ./alloc /alloc
 
-ENTRYPOINT [ "/bin/sh", "/fill_disk.sh" ]
+ENTRYPOINT [ "/alloc" ]

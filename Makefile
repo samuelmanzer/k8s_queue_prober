@@ -5,7 +5,10 @@ REMOTE_REG ?= localhost:5000
 IMAGE_NAME = k8s_queue_prober
 REMOTE_TAG = $(REMOTE_REG)/$(IMAGE_NAME)
 
-build:
+alloc: alloc.go
+	docker run -v $(CURDIR):/go --rm golang go build -o ./alloc
+
+build: alloc
 	docker build -t $(IMAGE_NAME) .
 run: build
 	docker run --rm $(IMAGE_NAME)
